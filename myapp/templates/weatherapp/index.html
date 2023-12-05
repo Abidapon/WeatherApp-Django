@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Weather App</h1>
+
+        <form method="get" action="{% url 'index' %}">
+            {{ form.as_p }}
+            <button type="submit">Search</button>
+        </form>
+
+        {% if error_message %}
+            <p class="error">{{ error_message }}</p>
+        {% elif city %}
+            <h2>Weather in {{ city }}</h2>
+            <h3>{{ temperature }}°C</h3>
+            <h4>{{ description }}</h4>
+            <img src="http://openweathermap.org/img/wn/{{ icon }}.png" alt="Weather Icon">
+        {% endif %}
+    </div>
+</body>
+</html>
+
